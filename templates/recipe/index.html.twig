@@ -1,0 +1,433 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .ingredients-categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .category {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .category h6 {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .ingredients-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .ingredient-button {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .ingredient-button:hover {
+            background-color: #e0e0e0;
+        }
+        .ingredient-button.selected {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .ingredient-button .ingredient-emoji {
+            margin-right: 5px;
+        }
+        .selected-ingredient-tag {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 5px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .remove-ingredient {
+            margin-left: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .card-img-top img {
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-img-top img {
+            transform: scale(1.05);
+        }
+        .recipe-details .badge {
+            font-size: 0.8em;
+        }
+        .view-recipe {
+            transition: all 0.3s ease;
+        }
+        .view-recipe:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .numbered-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .numbered-list li {
+            margin-bottom: 10px;
+        }
+        .numbered-list li::before {
+            content: counter(list-item) ". ";
+            font-weight: bold;
+            color: #666;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="message-container">
+                    <h2 class="text-center mb-4">Assistant de Recettes</h2>
+                    <form id="recipeForm">
+                        <div class="mb-3">
+                            <label class="form-label">Ingrédients disponibles</label>
+                            <div class="ingredients-categories">
+                                <div class="category">
+                                    <h6>🥬 Légumes</h6>
+                                    <div class="ingredients-suggestions">
+                                        <button type="button" class="ingredient-button" data-ingredient="Tomate">
+                                            <span class="ingredient-emoji">🍅</span>
+                                            <span class="ingredient-name">Tomate</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Oignon">
+                                            <span class="ingredient-emoji">🧅</span>
+                                            <span class="ingredient-name">Oignon</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Ail">
+                                            <span class="ingredient-emoji">🧄</span>
+                                            <span class="ingredient-name">Ail</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Carotte">
+                                            <span class="ingredient-emoji">🥕</span>
+                                            <span class="ingredient-name">Carotte</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Pomme de terre">
+                                            <span class="ingredient-emoji">🥔</span>
+                                            <span class="ingredient-name">Pomme de terre</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Poivron">
+                                            <span class="ingredient-emoji">🫑</span>
+                                            <span class="ingredient-name">Poivron</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Champignon">
+                                            <span class="ingredient-emoji">🍄</span>
+                                            <span class="ingredient-name">Champignon</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="category">
+                                    <h6>🍎 Fruits</h6>
+                                    <div class="ingredients-suggestions">
+                                        <button type="button" class="ingredient-button" data-ingredient="Pomme">
+                                            <span class="ingredient-emoji">🍎</span>
+                                            <span class="ingredient-name">Pomme</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Banane">
+                                            <span class="ingredient-emoji">🍌</span>
+                                            <span class="ingredient-name">Banane</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Orange">
+                                            <span class="ingredient-emoji">🍊</span>
+                                            <span class="ingredient-name">Orange</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="category">
+                                    <h6>🥩 Viandes</h6>
+                                    <div class="ingredients-suggestions">
+                                        <button type="button" class="ingredient-button" data-ingredient="Poulet">
+                                            <span class="ingredient-emoji">🍗</span>
+                                            <span class="ingredient-name">Poulet</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Bœuf">
+                                            <span class="ingredient-emoji">🥩</span>
+                                            <span class="ingredient-name">Bœuf</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Porc">
+                                            <span class="ingredient-emoji">🐖</span>
+                                            <span class="ingredient-name">Porc</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="category">
+                                    <h6>🐟 Poissons et Fruits de Mer</h6>
+                                    <div class="ingredients-suggestions">
+                                        <button type="button" class="ingredient-button" data-ingredient="Saumon">
+                                            <span class="ingredient-emoji">🐟</span>
+                                            <span class="ingredient-name">Saumon</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Thon">
+                                            <span class="ingredient-emoji">🐠</span>
+                                            <span class="ingredient-name">Thon</span>
+                                        </button>
+                                        <button type="button" class="ingredient-button" data-ingredient="Crevettes">
+                                            <span class="ingredient-emoji">🦐</span>
+                                            <span class="ingredient-name">Crevettes</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ajouter un ingrédient personnalisé</label>
+                            <div class="input-group">
+                                <input type="text" 
+                                       id="customIngredient" 
+                                       class="form-control" 
+                                       placeholder="Entrez un ingrédient...">
+                                <button type="button" class="btn btn-secondary" id="addCustomIngredient">
+                                    Ajouter
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="selectedIngredients" class="selected-ingredients">
+                            <!-- Les ingrédients sélectionnés seront ajoutés ici -->
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary w-100">
+                                Trouver des recettes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="recipeResults" class="mt-4">
+                    <!-- Les résultats des recettes seront affichés ici -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedIngredients = new Set();
+            const selectedIngredientsContainer = document.getElementById('selectedIngredients');
+            const customIngredient = document.getElementById('customIngredient');
+            const addCustomIngredientBtn = document.getElementById('addCustomIngredient');
+
+            // Gestion des boutons d'ingrédients
+            document.querySelectorAll('.ingredient-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const ingredient = this.dataset.ingredient;
+                    if (selectedIngredients.has(ingredient)) {
+                        selectedIngredients.delete(ingredient);
+                        this.classList.remove('selected');
+                    } else {
+                        selectedIngredients.add(ingredient);
+                        this.classList.add('selected');
+                    }
+                    updateSelectedIngredientsDisplay();
+                });
+            });
+
+            // Ajouter un ingrédient personnalisé
+            addCustomIngredientBtn.addEventListener('click', addCustomIngredientHandler);
+            customIngredient.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addCustomIngredientHandler();
+                }
+            });
+
+            function addCustomIngredientHandler() {
+                const value = customIngredient.value.trim();
+                if (value && !selectedIngredients.has(value)) {
+                    selectedIngredients.add(value);
+                    updateSelectedIngredientsDisplay();
+                    customIngredient.value = '';
+                }
+            }
+
+            function updateSelectedIngredientsDisplay() {
+                selectedIngredientsContainer.innerHTML = '';
+                selectedIngredients.forEach(ingredient => {
+                    const tag = document.createElement('span');
+                    tag.className = 'selected-ingredient-tag';
+                    tag.innerHTML = `
+                        ${ingredient}
+                        <span class="remove-ingredient" data-ingredient="${ingredient}">&times;</span>
+                    `;
+                    selectedIngredientsContainer.appendChild(tag);
+                });
+
+                // Mettre à jour les boutons
+                document.querySelectorAll('.ingredient-button').forEach(button => {
+                    const ingredient = button.dataset.ingredient;
+                    button.classList.toggle('selected', selectedIngredients.has(ingredient));
+                });
+
+                // Ajouter les gestionnaires de suppression
+                document.querySelectorAll('.remove-ingredient').forEach(removeBtn => {
+                    removeBtn.addEventListener('click', function() {
+                        const ingredient = this.dataset.ingredient;
+                        selectedIngredients.delete(ingredient);
+                        updateSelectedIngredientsDisplay();
+                    });
+                });
+            }
+
+            // Gestion du formulaire
+            document.getElementById('recipeForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const ingredients = Array.from(selectedIngredients);
+                console.log('Ingrédients sélectionnés:', ingredients);
+
+                if (ingredients.length === 0) {
+                    alert('Veuillez sélectionner au moins un ingrédient');
+                    return;
+                }
+
+                const recipeResultsContainer = document.getElementById('recipeResults');
+                recipeResultsContainer.innerHTML = '<div class="text-center"><div class="spinner-border" role="status"><span class="visually-hidden">Chargement...</span></div></div>';
+
+                try {
+                    // Encoder les ingrédients pour l'URL
+                    const ingredientsParam = ingredients.map(ing => encodeURIComponent(ing)).join(',');
+                    console.log('Paramètres d\'ingrédients:', ingredientsParam);
+
+                    const response = await fetch(`/recipes/by-ingredients?ingredients=${ingredientsParam}`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    console.log('Réponse du serveur:', response);
+
+                    const data = await response.json();
+                    console.log('Données reçues:', data);
+
+                    if (!data.success) {
+                        throw new Error(data.message || 'Erreur lors de la recherche de recettes');
+                    }
+
+                    // Nettoyer les résultats précédents
+                    recipeResultsContainer.innerHTML = '';
+
+                    // Vérifier s'il y a des recettes
+                    if (!data.recipes || data.recipes.length === 0) {
+                        recipeResultsContainer.innerHTML = `
+                            <div class="alert alert-info text-center" role="alert">
+                                Aucune recette trouvée avec les ingrédients sélectionnés.
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    // Créer la grille de recettes
+                    const recipesGrid = document.createElement('div');
+                    recipesGrid.className = 'row g-4';
+
+                    data.recipes.forEach(recipe => {
+                        const recipeCard = document.createElement('div');
+                        recipeCard.className = 'col-md-4 mb-4';
+                        
+                        // Nettoyer et formater les instructions
+                        const cleanInstructions = (instructions) => {
+                            if (!instructions) return [];
+                            
+                            return instructions
+                                .split('\n')
+                                .filter(step => step.trim() !== '')
+                                .map(step => {
+                                    // Supprimer tous les préfixes numériques, points, et espaces
+                                    return step
+                                        .replace(/^[\d\s).-]+/g, '')  // Supprimer les préfixes
+                                        .replace(/^[1-9]\./g, '')     // Supprimer les "1.", "2.", etc.
+                                        .trim();
+                                })
+                                .filter(step => step !== '');
+                        };
+
+                        // Séparer les paragraphes des étapes de liste
+                        const formatInstructions = (instructions) => {
+                            if (!instructions) return '<p>Aucune instruction disponible</p>';
+                            
+                            const cleanedSteps = cleanInstructions(instructions);
+                            const formattedSteps = cleanedSteps.map((step, index) => {
+                                // Vérifier si l'étape ressemble à un paragraphe ou une étape de liste
+                                if (step.length > 50 || !step.match(/^[A-Z]/)) {
+                                    return `<p>${step}</p>`;
+                                }
+                                return `<li>${step}</li>`;
+                            });
+
+                            // Combiner les étapes
+                            return formattedSteps.join('');
+                        };
+
+                        recipeCard.innerHTML = `
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-img-top text-center p-3">
+                                    <img src="${recipe.image}" class="img-fluid rounded" alt="${recipe.title}" style="max-height: 250px; object-fit: cover;">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center mb-3">${recipe.title}</h5>
+                                    
+                                    <div class="recipe-details">
+                                        <div class="recipe-instructions">
+                                            <h6 class="text-muted mb-3">
+                                                <i class="bi bi-list-task text-info"></i> Préparation
+                                            </h6>
+                                            <div class="instruction-content">
+                                                <ol class="numbered-list">
+                                                    ${recipe.instructions ? 
+                                                        formatInstructions(recipe.instructions)
+                                                        : '<li>Aucune instruction disponible</li>'
+                                                    }
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        recipesGrid.appendChild(recipeCard);
+                    });
+
+                    recipeResultsContainer.appendChild(recipesGrid);
+
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    const recipeResultsContainer = document.getElementById('recipeResults');
+                    recipeResultsContainer.innerHTML = `
+                        <div class="alert alert-danger text-center" role="alert">
+                            ${error.message || 'Une erreur est survenue lors de la recherche de recettes'}
+                        </div>
+                    `;
+                }
+            });
+        });
+    </script>
+{% endblock %}

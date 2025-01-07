@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sélection des Ingrédients{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Sélectionnez vos ingrédients</h1>
+    
+    <form method="post">
+        <div class="row">
+            {% for ingredientForm in ingredientForms %}
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_start(ingredientForm) }}
+                        <div class="d-flex justify-content-between align-items-center">
+                            {{ form_widget(ingredientForm.name, {'attr': {'class': 'form-control-plaintext'}}) }}
+                            {{ form_widget(ingredientForm.selected, {'attr': {'class': 'form-check-input'}}) }}
+                        </div>
+                        {{ form_end(ingredientForm) }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Enregistrer la sélection</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            fetch('/ingredients/selected')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Ingrédients sélectionnés:', data.selectedIngredients);
+                });
+        });
+    });
+});
+</script>
+{% endblock %}

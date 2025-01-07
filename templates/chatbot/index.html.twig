@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chatbot Recettes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .user-message {
+            background: #007bff;
+            color: white;
+            margin-left: 20%;
+        }
+        .bot-message {
+            background: #e9ecef;
+            margin-right: 20%;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: white;
+        }
+        .product-image {
+            max-width: 100px;
+            height: auto;
+        }
+        .input-group {
+            margin-top: 20px;
+        }
+        .nutrition-grade {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+        }
+        .grade-a { background-color: #198754; }
+        .grade-b { background-color: #79B51C; }
+        .grade-c { background-color: #FFC107; }
+        .grade-d { background-color: #FD7E14; }
+        .grade-e { background-color: #DC3545; }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mt-4">Assistant Recettes</h1>
+        
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    Bonjour ! Je suis votre assistant recettes. Que souhaitez-vous cuisiner aujourd'hui ?
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="userInput" class="form-control" placeholder="Entrez votre recherche...">
+                <button class="btn btn-primary" id="sendButton">Envoyer</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function createProductCard(product) {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                let gradeClass = 'grade-e';
+                if (product.nutrition_grade === 'a') gradeClass = 'grade-a';
+                else if (product.nutrition_grade === 'b') gradeClass = 'grade-b';
+                else if (product.nutrition_grade === 'c') gradeClass = 'grade-c';
+                else if (product.nutrition_grade === 'd') gradeClass = 'grade-d';
+
+                let content = `
+                    <h5>${product.name}</h5>
+                    ${product.image ? `<img src="${product.image}" class="product-image" alt="${product.name}">` : ''}
+                    <p><strong>Ingrédients:</strong> ${product.ingredients}</p>
+                    <p><span class="nutrition-grade ${gradeClass}">Nutri-Score: ${product.nutrition_grade.toUpperCase()}</span></p>
+                `;
+                
+                card.innerHTML = content;
+                return card;
+            }
+
+            async function sendMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+
+                addMessage(message, true);
+                userInput.value = '';
+
+                try {
+                    const response = await fetch('/api/search', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ query: message })
+                    });
+
+                    const data = await response.json();
+                    
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.className = 'message bot-message';
+                    botMessageDiv.textContent = data.message;
+                    chatMessages.appendChild(botMessageDiv);
+
+                    data.suggestions.forEach(product => {
+                        const productCard = createProductCard(product);
+                        chatMessages.appendChild(productCard);
+                    });
+
+                } catch (error) {
+                    addMessage("Désolé, une erreur s'est produite lors de la recherche.", false);
+                }
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            sendButton.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+{% endblock %}
