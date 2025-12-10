@@ -13,7 +13,6 @@ ENV/
 .env.local
 
 # Data & Cache
-data/
 referentiel/referentiel_musical.json
 referentiel/embeddings_cache.pkl
 referentiel/responses/

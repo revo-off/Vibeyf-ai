@@ -27,7 +27,6 @@ uvicorn api:app --reload --host 0.0.0.0 --port 8000
 ```
 
 L'API sera accessible sur : http://localhost:8000
-Documentation Swagger : http://localhost:8000/docs
 
 ### 2. Démarrer le Frontend
 
