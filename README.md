@@ -37,9 +37,7 @@ GEMINI_API_KEY=votre_clé_api_ici
 python api.py
 ```
 
-Le serveur démarre sur `http://localhost:8000`
-
-Vous pouvez tester l'API sur : `http://localhost:8000/docs` (interface Swagger)
+Le serveur démarre sur `http://localhost:3000`
 
 ### 4. Lancement du frontend
 
