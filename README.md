@@ -4,13 +4,13 @@
 
 ```
 Vibeyf-ai/
-├── api.py                      # Backend FastAPI (nouveau)
+├── api.py                      # Backend FastAPI
 ├── requirements-api.txt        # Dépendances backend
 ├── frontend/                   # Frontend HTML/CSS/JS
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
-├── services/                   # Services backend (nettoyés)
+├── services/                   # Services backend
 ├── config/
 └── data/
 ```
