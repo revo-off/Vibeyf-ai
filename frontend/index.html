@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibeyf-AI - Recommandation Musicale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎵</span>
+                <h1>Vibeyf-AI</h1>
+            </div>
+            <p class="subtitle">Votre assistant de recommandation musicale personnalisée</p>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container" id="chatContainer">
+            <!-- Messages will be added here dynamically -->
+            <div class="message bot-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>Bonjour ! Je suis Vibeyf-AI, votre assistant musical personnel.</p>
+                    <p>Je vais vous poser quelques questions pour comprendre vos goûts musicaux et vous recommander les musiques parfaites pour vous.</p>
+                    <p>Prêt à commencer ? 🎶</p>
+                    <button class="btn-primary" onclick="startQuestionnaire()">Commencer le questionnaire</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-area" id="inputArea" style="display: none;">
+            <!-- Dynamic input will be inserted here -->
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyse de vos préférences en cours...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
