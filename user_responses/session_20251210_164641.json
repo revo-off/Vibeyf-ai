@@ -1,0 +1,327 @@
+{
+  "user_id": "20251210_164641",
+  "timestamp": "2025-12-10T16:46:41.756528",
+  "reponses_utilisateur": {
+    "likert": {
+      "q1_energie": 5,
+      "q2_humeur": 4,
+      "q3_ouverture": 1
+    },
+    "ouvertes": {
+      "qo1_preferences": "J'aime le rock alternatif et la pop mélancolique, des artistes comme Radiohead ou Lana Del Rey. Je cherche quelque chose d'introspectif mais motivant pour travailler",
+      "qo2_contexte": "Pendant mes séances de sport, en conduisant, pour me concentrer.",
+      "qo3_artistes": [
+        "Coldplay",
+        "Adele",
+        "The Killers"
+      ]
+    }
+  },
+  "recommandations": [
+    {
+      "rang": 1,
+      "type": "chanson",
+      "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+      "nom": "Take on Me",
+      "artiste": "a-ha",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.493,
+        "mood_match": 0.5,
+        "preferences_likert": 0.888,
+        "audio_features": 0.888,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.902,
+        "danceability": 0.573,
+        "valence": 0.876,
+        "acousticness": 0.018,
+        "tempo": 84.412,
+        "loudness": -7.638,
+        "speechiness": 0.054,
+        "instrumentalness": 0.00125,
+        "liveness": 0.0928
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Take+on+Me+a-ha"
+    },
+    {
+      "rang": 2,
+      "type": "chanson",
+      "id": "3CRDbSIZ4r5MsZ0YwxuEkn",
+      "nom": "Stressed Out",
+      "artiste": "Twenty One Pilots",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.454,
+        "mood_match": 0.5,
+        "preferences_likert": 0.768,
+        "audio_features": 0.768,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.637,
+        "danceability": 0.734,
+        "valence": 0.648,
+        "acousticness": 0.0462,
+        "tempo": 169.977,
+        "loudness": -5.677,
+        "speechiness": 0.141,
+        "instrumentalness": 2.29e-05,
+        "liveness": 0.0602
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Stressed+Out+Twenty+One+Pilots"
+    },
+    {
+      "rang": 3,
+      "type": "chanson",
+      "id": "6K4t31amVTZDgR3sKmwUJJ",
+      "nom": "The Less I Know The Better",
+      "artiste": "Tame Impala",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.448,
+        "mood_match": 0.5,
+        "preferences_likert": 0.852,
+        "audio_features": 0.852,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.74,
+        "danceability": 0.64,
+        "valence": 0.785,
+        "acousticness": 0.0115,
+        "tempo": 116.879,
+        "loudness": -4.083,
+        "speechiness": 0.0284,
+        "instrumentalness": 0.00678,
+        "liveness": 0.167
+      },
+      "spotify_search_url": "https://open.spotify.com/search/The+Less+I+Know+The+Better+Tame+Impala"
+    },
+    {
+      "rang": 4,
+      "type": "chanson",
+      "id": "2dpaYNEQHiRxtZbfNsse99",
+      "nom": "Happier",
+      "artiste": "Marshmello",
+      "genre": "pop",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.433,
+        "mood_match": 0.5,
+        "preferences_likert": 0.856,
+        "audio_features": 0.856,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.792,
+        "danceability": 0.687,
+        "valence": 0.671,
+        "acousticness": 0.191,
+        "tempo": 100.015,
+        "loudness": -2.749,
+        "speechiness": 0.0452,
+        "instrumentalness": 0.0,
+        "liveness": 0.167
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Happier+Marshmello"
+    },
+    {
+      "rang": 5,
+      "type": "chanson",
+      "id": "2tnVG71enUj33Ic2nFN6kZ",
+      "nom": "Ride It",
+      "artiste": "Regard",
+      "genre": "pop",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.43,
+        "mood_match": 0.5,
+        "preferences_likert": 0.808,
+        "audio_features": 0.808,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.751,
+        "danceability": 0.88,
+        "valence": 0.884,
+        "acousticness": 0.177,
+        "tempo": 117.948,
+        "loudness": -4.258,
+        "speechiness": 0.0874,
+        "instrumentalness": 6.43e-05,
+        "liveness": 0.106
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Ride+It+Regard"
+    },
+    {
+      "rang": 6,
+      "type": "chanson",
+      "id": "3cfOd4CMv2snFaKAnMdnvK",
+      "nom": "All Star",
+      "artiste": "Smash Mouth",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.425,
+        "mood_match": 0.5,
+        "preferences_likert": 0.92,
+        "audio_features": 0.92,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.867,
+        "danceability": 0.731,
+        "valence": 0.776,
+        "acousticness": 0.0395,
+        "tempo": 104.019,
+        "loudness": -5.881,
+        "speechiness": 0.032,
+        "instrumentalness": 0.0,
+        "liveness": 0.0861
+      },
+      "spotify_search_url": "https://open.spotify.com/search/All+Star+Smash+Mouth"
+    },
+    {
+      "rang": 7,
+      "type": "chanson",
+      "id": "5T8EDUDqKcs6OSOwEsfqG7",
+      "nom": "Don't Stop Me Now - 2011 Mix",
+      "artiste": "Queen",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.407,
+        "mood_match": 0.5,
+        "preferences_likert": 0.863,
+        "audio_features": 0.863,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.868,
+        "danceability": 0.559,
+        "valence": 0.609,
+        "acousticness": 0.0475,
+        "tempo": 156.295,
+        "loudness": -5.276,
+        "speechiness": 0.17,
+        "instrumentalness": 0.000176,
+        "liveness": 0.776
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Don't+Stop+Me+Now+-+2011+Mix+Queen"
+    },
+    {
+      "rang": 8,
+      "type": "chanson",
+      "id": "08mG3Y1vljYA6bvDt4Wqkj",
+      "nom": "Back In Black",
+      "artiste": "AC/DC",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.406,
+        "mood_match": 0.5,
+        "preferences_likert": 0.843,
+        "audio_features": 0.843,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.7,
+        "danceability": 0.31,
+        "valence": 0.763,
+        "acousticness": 0.011,
+        "tempo": 188.386,
+        "loudness": -5.678,
+        "speechiness": 0.047,
+        "instrumentalness": 0.00965,
+        "liveness": 0.0828
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Back+In+Black+AC/DC"
+    },
+    {
+      "rang": 9,
+      "type": "chanson",
+      "id": "5W8YXBz9MTIDyrpYaCg2Ky",
+      "nom": "Last Resort",
+      "artiste": "Papa Roach",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.378,
+        "mood_match": 0.5,
+        "preferences_likert": 0.916,
+        "audio_features": 0.916,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.89,
+        "danceability": 0.589,
+        "valence": 0.692,
+        "acousticness": 0.000481,
+        "tempo": 90.598,
+        "loudness": -3.719,
+        "speechiness": 0.0603,
+        "instrumentalness": 0.00082,
+        "liveness": 0.201
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Last+Resort+Papa+Roach"
+    },
+    {
+      "rang": 10,
+      "type": "chanson",
+      "id": "6L89mwZXSOwYl76YXfX13s",
+      "nom": "Basket Case",
+      "artiste": "Green Day",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.34,
+        "mood_match": 0.5,
+        "preferences_likert": 0.956,
+        "audio_features": 0.956,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.943,
+        "danceability": 0.442,
+        "valence": 0.781,
+        "acousticness": 0.00293,
+        "tempo": 85.064,
+        "loudness": -3.205,
+        "speechiness": 0.0602,
+        "instrumentalness": 8.71e-06,
+        "liveness": 0.091
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Basket+Case+Green+Day"
+    }
+  ],
+  "statistiques": {
+    "score_moyen": 0.5600391233827452,
+    "score_max": 1.0,
+    "score_min": 0.21418023854494095,
+    "nombre_elements_evalues": 641
+  },
+  "genres_preferes": [
+    "pop",
+    "rock"
+  ],
+  "niveau_ouverture": 1,
+  "rapport_genai": {
+    "synthese": "Synthèse non disponible (erreur API).",
+    "plan_progression": "Plan de progression non disponible (erreur API)."
+  }
+}

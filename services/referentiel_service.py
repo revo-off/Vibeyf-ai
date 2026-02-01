@@ -43,8 +43,8 @@ class ReferentielMusical:
         for genre, count in genres_counts.items():
             songs = self.df_spotify[self.df_spotify['playlist_genre'] == genre]
             
-            # Prendre les 100 meilleures chansons du genre (ou toutes si moins de 100)
-            top_songs = songs.nlargest(min(100, len(songs)), 'track_popularity')
+            # Reduce to 30 songs per genre to save memory (was 100)
+            top_songs = songs.nlargest(min(30, len(songs)), 'track_popularity')
             
             self.genres[genre] = {
                 "nom": genre,

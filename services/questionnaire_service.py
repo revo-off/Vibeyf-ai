@@ -13,56 +13,26 @@ class QuestionnaireService:
     """Gère la collecte des réponses utilisateur"""
     
     def __init__(self):
-        self.questions_likert = self._init_questions_likert()
         self.questions_ouvertes = self._init_questions_ouvertes()
+        self.questions_likert = self._init_questions_likert()
     
     def _init_questions_likert(self) -> List[Dict[str, Any]]:
         """Initialise les questions sur échelle de Likert (1-5)"""
         return [
             {
                 "id": "q1_energie",
-                "question": "À quel point aimez-vous la musique énergique et dynamique ?",
+                "question": "Quel niveau d'énergie recherchez-vous dans votre musique ?",
                 "dimension": "énergie",
-                "echelle": "1 (Pas du tout) à 5 (Énormément)"
+                "echelle": "1 (Très calme) à 5 (Très énergique)"
             },
             {
-                "id": "q2_calme",
-                "question": "À quel point appréciez-vous la musique calme et relaxante ?",
-                "dimension": "calme",
-                "echelle": "1 (Pas du tout) à 5 (Énormément)"
-            },
-            {
-                "id": "q3_danse",
-                "question": "À quel point aimez-vous la musique dansante ?",
-                "dimension": "danceability",
-                "echelle": "1 (Pas du tout) à 5 (Énormément)"
-            },
-            {
-                "id": "q4_joyeux",
-                "question": "Préférez-vous la musique joyeuse et positive ?",
+                "id": "q2_humeur",
+                "question": "Quelle ambiance émotionnelle préférez-vous ?",
                 "dimension": "valence",
-                "echelle": "1 (Non, plutôt mélancolique) à 5 (Oui, très joyeuse)"
+                "echelle": "1 (Mélancolique/Sombre) à 5 (Joyeuse/Positive)"
             },
             {
-                "id": "q5_acoustique",
-                "question": "Appréciez-vous la musique acoustique et instrumentale ?",
-                "dimension": "acousticness",
-                "echelle": "1 (Pas du tout) à 5 (Énormément)"
-            },
-            {
-                "id": "q6_intensite",
-                "question": "Quel niveau d'intensité sonore préférez-vous ?",
-                "dimension": "loudness",
-                "echelle": "1 (Très doux) à 5 (Très intense)"
-            },
-            {
-                "id": "q7_rythme",
-                "question": "Préférez-vous un rythme rapide ou lent ?",
-                "dimension": "bpm",
-                "echelle": "1 (Très lent) à 5 (Très rapide)"
-            },
-            {
-                "id": "q8_nouveaute",
+                "id": "q3_ouverture",
                 "question": "Êtes-vous ouvert à découvrir de nouveaux genres musicaux ?",
                 "dimension": "ouverture",
                 "echelle": "1 (Non, je préfère mes styles) à 5 (Oui, j'adore découvrir)"
@@ -73,10 +43,10 @@ class QuestionnaireService:
         """Initialise les questions ouvertes"""
         return [
             {
-                "id": "qo1_mood",
-                "question": "Décrivez l'ambiance ou le mood musical que vous recherchez actuellement",
+                "id": "qo1_preferences",
+                "question": "Décrivez vos préférences musicales : genres que vous aimez, ambiance recherchée, artistes préférés, émotions souhaitées...",
                 "type": "texte_libre",
-                "placeholder": "Ex: Je cherche quelque chose de mélancolique mais motivant pour travailler..."
+                "placeholder": "Ex: J'aime le rock alternatif et la pop mélancolique, des artistes comme Radiohead ou Lana Del Rey. Je cherche quelque chose d'introspectif mais motivant pour travailler..."
             },
             {
                 "id": "qo2_contexte",
@@ -86,21 +56,9 @@ class QuestionnaireService:
             },
             {
                 "id": "qo3_artistes",
-                "question": "Quels sont vos artistes ou groupes préférés ? (séparés par des virgules)",
+                "question": "Y a-t-il des artistes ou groupes spécifiques à mentionner ? (optionnel, séparés par des virgules)",
                 "type": "liste",
                 "placeholder": "Ex: Coldplay, Adele, The Killers"
-            },
-            {
-                "id": "qo4_genres",
-                "question": "Quels genres musicaux écoutez-vous habituellement ? (séparés par des virgules)",
-                "type": "liste",
-                "placeholder": "Ex: rock, pop, électro, jazz"
-            },
-            {
-                "id": "qo5_emotions",
-                "question": "Quelles émotions souhaitez-vous ressentir en écoutant de la musique ?",
-                "type": "texte_libre",
-                "placeholder": "Ex: Nostalgie, joie, énergie, sérénité..."
             }
         ]
     
@@ -196,20 +154,8 @@ class QuestionnaireService:
             # Normaliser selon la dimension (échelle 0.0-1.0 pour features Spotify)
             if dimension == "énergie":
                 preferences["energy"] = (valeur - 1) / 4.0  # 0.0-1.0
-            elif dimension == "calme":
-                preferences["calmness"] = (valeur - 1) / 4.0  # 0.0-1.0
-            elif dimension == "danceability":
-                preferences["danceability"] = (valeur - 1) / 4.0  # 0.0-1.0
             elif dimension == "valence":
                 preferences["valence"] = (valeur - 1) / 4.0  # 0.0-1.0
-            elif dimension == "acousticness":
-                preferences["acousticness"] = (valeur - 1) / 4.0  # 0.0-1.0
-            elif dimension == "loudness":
-                # Loudness est en dB (typiquement -60 à 0, mais souvent -20 à 0)
-                preferences["loudness"] = -30 + (valeur - 1) * 7.5  # -30 à 0
-            elif dimension == "bpm":
-                # BPM typique de 60 à 180
-                preferences["tempo"] = 60 + (valeur - 1) * 30  # 60 à 180
             elif dimension == "ouverture":
                 preferences["openness"] = valeur / 5.0  # 0.2 à 1.0
         
@@ -223,77 +169,67 @@ class QuestionnaireService:
         
         ouvertes = reponses.get("ouvertes", {})
         
-        # Mood et contexte
-        if "qo1_mood" in ouvertes:
-            valeur = ouvertes["qo1_mood"]["valeur"]
+        # Préférences principales (inclut genres, artistes, mood, émotions)
+        if "qo1_preferences" in ouvertes:
+            valeur = ouvertes["qo1_preferences"]["valeur"]
             if valeur:
                 textes.append(str(valeur))
         
+        # Contexte
         if "qo2_contexte" in ouvertes:
             valeur = ouvertes["qo2_contexte"]["valeur"]
             if valeur:
                 textes.append(str(valeur))
         
-        # Émotions
-        if "qo5_emotions" in ouvertes:
-            valeur = ouvertes["qo5_emotions"]["valeur"]
-            if valeur:
-                textes.append(str(valeur))
-        
-        # Artistes et genres (pour contexte)
+        # Artistes supplémentaires (optionnel)
         if "qo3_artistes" in ouvertes:
             artistes = ouvertes["qo3_artistes"]["valeur"]
             if isinstance(artistes, list) and artistes:
                 # Filtrer les valeurs vides et convertir en string
                 artistes_str = [str(a).strip() for a in artistes if a]
                 if artistes_str:
-                    textes.append("J'aime les artistes comme " + ", ".join(artistes_str))
+                    textes.append("Artistes mentionnés : " + ", ".join(artistes_str))
             elif artistes:
-                textes.append(f"J'aime {str(artistes)}")
-        
-        if "qo4_genres" in ouvertes:
-            genres = ouvertes["qo4_genres"]["valeur"]
-            if isinstance(genres, list) and genres:
-                # Filtrer les valeurs vides et convertir en string
-                genres_str = [str(g).strip() for g in genres if g]
-                if genres_str:
-                    textes.append("J'écoute principalement " + ", ".join(genres_str))
-            elif genres:
-                textes.append(f"J'écoute {str(genres)}")
+                textes.append(f"Artistes : {str(artistes)}")
         
         return " ".join(textes)
     
     def extraire_genres_preferes(self, reponses: Dict[str, Any]) -> List[str]:
         """
-        Extrait la liste des genres musicaux préférés depuis les réponses ouvertes
+        Extrait la liste des genres musicaux préférés depuis le texte des préférences
         
         Returns:
             Liste des genres préférés (en minuscules pour matching)
         """
         genres_preferes = []
+        genres_connus = ['rock', 'pop', 'rap', 'hip-hop', 'jazz', 'classical', 'electro', 'electronic', 
+                        'edm', 'metal', 'folk', 'country', 'reggae', 'r&b', 'rnb', 'soul', 'funk', 
+                        'blues', 'indie', 'alternative', 'punk', 'techno', 'house', 'latin', 'disco']
         
         ouvertes = reponses.get("ouvertes", {})
         
-        if "qo4_genres" in ouvertes:
-            genres = ouvertes["qo4_genres"]["valeur"]
-            if isinstance(genres, list):
-                genres_preferes = [str(g).strip().lower() for g in genres if g]
-            elif genres:
-                genres_preferes = [str(genres).strip().lower()]
+        # Extraire depuis qo1_preferences
+        if "qo1_preferences" in ouvertes:
+            texte = str(ouvertes["qo1_preferences"]["valeur"]).lower()
+            
+            # Rechercher les genres connus dans le texte
+            for genre in genres_connus:
+                if genre in texte:
+                    genres_preferes.append(genre)
         
-        return genres_preferes
+        return list(set(genres_preferes))  # Dédupliquer
     
     def extraire_niveau_ouverture(self, reponses: Dict[str, Any]) -> int:
         """
-        Extrait le niveau d'ouverture à de nouveaux genres (question q8_nouveaute)
+        Extrait le niveau d'ouverture à de nouveaux genres (question q3_ouverture)
         
         Returns:
             Valeur entre 1 et 5 (1 = fermé, 5 = très ouvert)
         """
         likert_responses = reponses.get("likert", {})
         
-        if "q8_nouveaute" in likert_responses:
-            return likert_responses["q8_nouveaute"]["valeur"]
+        if "q3_ouverture" in likert_responses:
+            return likert_responses["q3_ouverture"]["valeur"]
         
         return 3  # Valeur neutre par défaut
 

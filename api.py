@@ -7,7 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, List, Any, Optional
 from datetime import datetime
+import json
 
+from config.config import RESPONSES_DIR
 from services.referentiel_service import ReferentielMusical
 from services.questionnaire_service import QuestionnaireService
 from services.nlp_service import MoteurNLP
@@ -19,7 +21,11 @@ app = FastAPI(title="Vibeyf-AI API", version="1.0.0")
 # Configuration CORS pour React
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],  # Vite et CRA
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "*"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -50,6 +56,34 @@ class VibeyfAIBackend:
         self.questionnaire = QuestionnaireService()
         self.use_gemini = use_gemini
         self.gemini = GeminiService() if use_gemini else None
+    
+    def _save_user_session(self, user_id: str, reponses_utilisateur: dict, result: dict):
+        """Sauvegarde la session utilisateur avec réponses et recommandations
+        
+        Args:
+            user_id: Identifiant unique de la session
+            reponses_utilisateur: Réponses brutes de l'utilisateur
+            result: Résultat complet avec recommandations
+        """
+        try:
+            session_data = {
+                'user_id': user_id,
+                'timestamp': datetime.now().isoformat(),
+                'reponses_utilisateur': reponses_utilisateur,
+                'recommandations': result['recommandations'],
+                'statistiques': result['statistiques'],
+                'genres_preferes': result.get('genres_preferes', []),
+                'niveau_ouverture': result.get('niveau_ouverture', 3),
+                'rapport_genai': result.get('rapport_genai')
+            }
+            
+            # Sauvegarder dans un fichier JSON
+            filename = RESPONSES_DIR / f"session_{user_id}.json"
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(session_data, f, ensure_ascii=False, indent=2)
+                
+        except Exception as e:
+            print(f"Erreur lors de la sauvegarde de la session: {e}")
     
     def process_recommendation(self, reponses_utilisateur: dict) -> dict:
         """Traite une demande de recommandation"""
@@ -111,13 +145,18 @@ class VibeyfAIBackend:
             except:
                 pass
         
-        return self._format_response(
+        result = self._format_response(
             recommandations, 
             rapport_genai, 
             user_id,
             genres_preferes,
             niveau_ouverture
         )
+        
+        # Sauvegarder la session
+        self._save_user_session(user_id, reponses_utilisateur, result)
+        
+        return result
     
     def _format_response(self, recommandations, rapport_genai, user_id, genres_preferes, niveau_ouverture):
         """Formate la réponse pour l'API"""

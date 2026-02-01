@@ -33,6 +33,29 @@ class GeminiService:
                 "Veuillez configurer GEMINI_API_KEY dans le fichier .env"
             )
     
+    def _formater_element_pour_prompt(self, element: Dict[str, Any]) -> str:
+        """Formate un élément avec son nom lisible au lieu de l'ID
+        
+        Args:
+            element: Dictionnaire contenant les infos de l'élément
+            
+        Returns:
+            String formaté pour le prompt
+        """
+        type_elem = element.get('type', 'inconnu')
+        data = element.get('data', {})
+        
+        # Récupérer le nom selon le type
+        if type_elem == 'chanson':
+            nom = data.get('nom', element.get('id', 'Titre inconnu'))
+            artiste = data.get('artiste', '')
+            return f'"{nom}" par {artiste}' if artiste else f'"{nom}"'
+        elif type_elem in ['genre', 'artiste', 'mood', 'ambiance', 'playlist']:
+            nom = data.get('nom', element.get('id', 'Inconnu'))
+            return f'"{nom}"'
+        else:
+            return element.get('id', 'Inconnu')
+
     def enrichir_texte_court(self, texte: str) -> str:
         """
         EF4.1: Enrichit les phrases courtes avec du contexte (usage conditionnel)
@@ -62,6 +85,7 @@ Règles:
 - Reste concis (maximum 3-4 phrases)
 - Utilise un style descriptif et technique
 - Ne pose pas de questions, formule des affirmations
+- LIMITE STRICTE: Maximum 100 mots
 
 Texte enrichi:"""
 
@@ -97,12 +121,12 @@ Texte enrichi:"""
         stats = recommandations['statistiques']
         
         tops_text = "\n".join([
-            f"- {i+1}. [{r['type'].upper()}] {r['id']} (Score: {r['scores']['global']:.2f})"
+            f"- {i+1}. [{r['type'].upper()}] {self._formater_element_pour_prompt(r)} (Score: {r['scores']['global']:.2f})"
             for i, r in enumerate(top_reco)
         ])
         
         faibles_text = "\n".join([
-            f"- [{p['type'].upper()}] {p['id']} (Score: {p['scores']['global']:.2f})"
+            f"- [{p['type'].upper()}] {self._formater_element_pour_prompt(p)} (Score: {p['scores']['global']:.2f})"
             for p in points_faibles[:3]
         ])
         
@@ -133,6 +157,7 @@ Format souhaité:
 - Une conclusion motivante
 
 Ton: Expert mais accessible, encourageant la découverte musicale.
+LIMITE STRICTE: Maximum 100 mots au total.
 
 Plan de progression:"""
 
@@ -171,13 +196,13 @@ Plan de progression:"""
             if elements:
                 meilleur = elements[0]
                 top_par_type_text.append(
-                    f"  {type_elem.upper()}: {meilleur['id']} (Score: {meilleur['scores']['global']:.2f})"
+                    f"  {type_elem.upper()}: {self._formater_element_pour_prompt(meilleur)} (Score: {meilleur['scores']['global']:.2f})"
                 )
         
         tops_text = "\n".join([
-            f"{i+1}. [{r['type'].upper()}] {r['id']}\n"
+            f"{i+1}. [{r['type'].upper()}] {self._formater_element_pour_prompt(r)}\n"
             f"   Score global: {r['scores']['global']:.2f}\n"
-            f"   - Similarité sémantique: {r['scores']['similarite_semantique']:.2f}\n"
+            f"   - Similarite semantique: {r['scores']['similarite_semantique']:.2f}\n"
             f"   - Mood match: {r['scores']['mood_match']:.2f}"
             for i, r in enumerate(top_reco)
         ])
@@ -207,6 +232,7 @@ Format: Executive Summary professionnel
 - 2-3 paragraphes maximum
 - Style clair, précis et persuasif
 - Utilise des termes musicaux appropriés
+- LIMITE STRICTE: Maximum 100 mots au total
 
 Synthèse:"""
 
