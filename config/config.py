@@ -21,6 +21,10 @@ REFERENTIEL_DIR.mkdir(exist_ok=True)
 # API Gemini
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
+# API Spotify (optionnel, pour récupérer les images des albums)
+SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "")
+SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "")
+
 # Modèle SBERT
 SBERT_MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"  # Modèle multilingue pour français/anglais
 

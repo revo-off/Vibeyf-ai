@@ -15,6 +15,7 @@ from services.questionnaire_service import QuestionnaireService
 from services.nlp_service import MoteurNLP
 from services.scoring_service import SystemeScoring
 from services.gemini_service import GeminiService
+from services.spotify_service import SpotifyService
 
 app = FastAPI(title="Vibeyf-AI API", version="1.0.0")
 
@@ -56,6 +57,14 @@ class VibeyfAIBackend:
         self.questionnaire = QuestionnaireService()
         self.use_gemini = use_gemini
         self.gemini = GeminiService() if use_gemini else None
+        
+        # Initialiser le service Spotify (optionnel, avec credentials depuis config)
+        try:
+            from config.config import SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET
+            self.spotify = SpotifyService(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+        except (ImportError, AttributeError):
+            # Si pas de credentials, utiliser le mode sans auth (placeholder images)
+            self.spotify = SpotifyService()
     
     def _save_user_session(self, user_id: str, reponses_utilisateur: dict, result: dict):
         """Sauvegarde la session utilisateur avec réponses et recommandations
@@ -88,6 +97,39 @@ class VibeyfAIBackend:
     def process_recommendation(self, reponses_utilisateur: dict) -> dict:
         """Traite une demande de recommandation"""
         user_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # Sauvegarder la requête originale (depuis la structure imbriquée)
+        qo1_originale = reponses_utilisateur.get('ouvertes', {}).get('qo1_preferences', '') or reponses_utilisateur.get('qo1_preferences', '')
+        qo1_enrichie = qo1_originale
+        
+        print(f"\n[API] Requête originale: '{qo1_originale}' ({len(qo1_originale.split()) if qo1_originale else 0} mots)")
+        print(f"[API] use_gemini={self.use_gemini}, gemini={self.gemini is not None}, model={self.gemini.model is not None if self.gemini else False}")
+        
+        # Améliorer la première question si trop courte (< 10 mots)
+        if self.use_gemini and self.gemini and self.gemini.model:
+            if qo1_originale:
+                try:
+                    print(f"[API] Tentative d'amélioration de la requête...")
+                    qo1_enrichie = self.gemini.ameliorer_requete_utilisateur(
+                        qo1_originale, seuil_mots=10
+                    )
+                    if qo1_enrichie != qo1_originale:
+                        print(f"[API] ✅ Requête enrichie: '{qo1_enrichie[:100]}...'")
+                        # Mettre à jour dans la structure imbriquée
+                        if 'ouvertes' in reponses_utilisateur:
+                            reponses_utilisateur['ouvertes']['qo1_preferences'] = qo1_enrichie
+                        else:
+                            reponses_utilisateur['qo1_preferences'] = qo1_enrichie
+                    else:
+                        print(f"[API] ⏸️ Requête non modifiée (>= 10 mots)")
+                except Exception as e:
+                    print(f"[API] ❌ Erreur amélioration requête: {e}")
+                    import traceback
+                    traceback.print_exc()
+            else:
+                print(f"[API] ⚠️ Requête vide ou non trouvée")
+        else:
+            print(f"[API] ⚠️ Gemini non disponible - amélioration désactivée")
         
         reponses_structurees = self.questionnaire.collecter_reponses_dict(
             reponses_utilisateur
@@ -137,9 +179,11 @@ class VibeyfAIBackend:
         rapport_genai = None
         if self.use_gemini and self.gemini and self.gemini.model:
             try:
+                # Utiliser la version enrichie pour le rapport si disponible
+                texte_pour_rapport = qo1_enrichie if qo1_enrichie != qo1_originale else texte_utilisateur
                 rapport_genai = self.gemini.generer_rapport_complet(
                     recommandations,
-                    texte_utilisateur,
+                    texte_pour_rapport,  # Utiliser la version enrichie
                     texte_enrichi
                 )
             except:
@@ -150,7 +194,9 @@ class VibeyfAIBackend:
             rapport_genai, 
             user_id,
             genres_preferes,
-            niveau_ouverture
+            niveau_ouverture,
+            qo1_originale,
+            qo1_enrichie
         )
         
         # Sauvegarder la session
@@ -158,13 +204,15 @@ class VibeyfAIBackend:
         
         return result
     
-    def _format_response(self, recommandations, rapport_genai, user_id, genres_preferes, niveau_ouverture):
+    def _format_response(self, recommandations, rapport_genai, user_id, genres_preferes, niveau_ouverture, qo1_originale='', qo1_enrichie=''):
         """Formate la réponse pour l'API"""
         return {
             'user_id': user_id,
             'timestamp': datetime.now().isoformat(),
             'genres_preferes': genres_preferes,
             'niveau_ouverture': niveau_ouverture,
+            'requete_originale': qo1_originale,
+            'requete_enrichie': qo1_enrichie if qo1_enrichie != qo1_originale else None,
             'recommandations': [
                 {
                     'rang': i + 1,
@@ -184,7 +232,9 @@ class VibeyfAIBackend:
                     },
                     'caracteristiques': r['data'].get('caracteristiques_moyennes', {}),
                     # Générer un lien Spotify de recherche
-                    'spotify_search_url': self._generate_spotify_url(r) if r['type'] == 'chanson' else None
+                    'spotify_search_url': self._generate_spotify_url(r) if r['type'] == 'chanson' else None,
+                    # Ajout de l'URL de l'image de l'album
+                    'album_cover_url': self._generate_album_cover_url(r) if r['type'] == 'chanson' else None
                 }
                 for i, r in enumerate(recommandations['top_recommandations'])
             ],
@@ -200,6 +250,31 @@ class VibeyfAIBackend:
             query = f"{nom} {artiste}".replace(' ', '+')
             return f"https://open.spotify.com/search/{query}"
         return None
+    
+    def _generate_album_cover_url(self, recommendation):
+        """Génère une URL d'image d'album via l'API Spotify
+        
+        Utilise le track_id pour récupérer l'image ou fait une recherche
+        par nom + artiste si le track_id n'est pas disponible
+        """
+        if recommendation['type'] == 'chanson':
+            track_id = recommendation.get('id', '')
+            
+            # Essayer d'abord avec le track_id
+            if track_id and track_id.startswith('spotify:track:'):
+                spotify_id = track_id.replace('spotify:track:', '')
+                cover_url = self.spotify.get_album_cover_url(spotify_id)
+                if cover_url:
+                    return cover_url
+            
+            # Sinon, chercher par nom + artiste
+            nom = recommendation['data'].get('nom', '')
+            artiste = recommendation['data'].get('artiste', '')
+            if nom and artiste:
+                return self.spotify.search_track_and_get_cover(nom, artiste)
+        
+        # Fallback vers placeholder
+        return self.spotify._get_placeholder_image()
 
 
 # Modèles Pydantic pour la validation des données

@@ -154,8 +154,14 @@ function submitOpenAnswer() {
     // Sauvegarder la réponse
     responses.ouvertes[question.id] = parsedValue;
     
-    // Afficher dans le chat
-    addUserMessage(`${question.question}\n**Réponse:** ${value}`);
+    // Afficher dans le chat (sera potentiellement mis à jour avec la version enrichie)
+    const messageDiv = addUserMessage(`${question.question}\n**Réponse:** ${value}`);
+    
+    // Stocker la référence au message de la première question pour mise à jour
+    if (question.id === 'qo1_preferences') {
+        window.firstQuestionMessageDiv = messageDiv;
+        window.firstQuestionOriginal = value;
+    }
     
     currentQuestionIndex++;
     showNextQuestion();
@@ -197,6 +203,17 @@ async function submitResponses() {
 
 // Afficher les recommandations
 function displayRecommendations(result) {
+    // Si la requête a été enrichie, mettre à jour le message utilisateur dans le chat
+    if (result.requete_enrichie && result.requete_enrichie !== result.requete_originale) {
+        if (window.firstQuestionMessageDiv) {
+            const questionText = allQuestions.find(q => q.id === 'qo1_preferences')?.question || 'Vos préférences';
+            const messageContent = window.firstQuestionMessageDiv.querySelector('.message-content');
+            messageContent.innerHTML = formatMessage(
+                `${questionText}\n**Réponse enrichie par l'IA:** ${result.requete_enrichie}`
+            );
+        }
+    }
+    
     // Message d'introduction
     let introMessage = `🎉 Voici vos recommandations personnalisées !\n\n`;
     
@@ -255,6 +272,15 @@ function displayRecommendationCards(recommendations) {
                 </div>
                 
                 ${rec.type === 'chanson' ? `
+                    ${rec.album_cover_url ? `
+                        <div class="album-cover-container">
+                            <img src="${rec.album_cover_url}" 
+                                 alt="Album cover" 
+                                 class="album-cover"
+                                 onerror="this.src='https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪'">
+                        </div>
+                    ` : ''}
+                    
                     <div class="recommendation-title">🎵 ${rec.nom}</div>
                     <div class="recommendation-artist">par ${rec.artiste}</div>
                     ${rec.genre ? `<span class="recommendation-genre">${rec.genre}</span>` : ''}
@@ -317,6 +343,7 @@ function addUserMessage(text) {
     `;
     chatContainer.appendChild(messageDiv);
     scrollToBottom();
+    return messageDiv; // Retourner l'élément pour pouvoir le modifier
 }
 
 // Formater le message (markdown simple)

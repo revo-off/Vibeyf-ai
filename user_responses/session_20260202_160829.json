@@ -1,0 +1,332 @@
+{
+  "user_id": "20260202_160829",
+  "timestamp": "2026-02-02T16:08:51.070184",
+  "reponses_utilisateur": {
+    "likert": {
+      "q1_energie": 5,
+      "q2_humeur": 5,
+      "q3_ouverture": 1
+    },
+    "ouvertes": {
+      "qo1_preferences": "sport",
+      "qo2_contexte": "sport",
+      "qo3_artistes": [
+        "Lil Wayne"
+      ]
+    }
+  },
+  "recommandations": [
+    {
+      "rang": 1,
+      "type": "chanson",
+      "id": "25ZAibhr3bdlMCLmubZDVt",
+      "nom": "QUE PRETENDES",
+      "artiste": "J Balvin",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.573,
+      "details_scores": {
+        "similarite_semantique": 0.426,
+        "mood_match": 0.5,
+        "preferences_likert": 0.865,
+        "audio_features": 0.865,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.791,
+        "danceability": 0.639,
+        "valence": 0.939,
+        "acousticness": 0.0275,
+        "tempo": 92.603,
+        "loudness": -4.443,
+        "speechiness": 0.253,
+        "instrumentalness": 0.0,
+        "liveness": 0.362
+      },
+      "spotify_search_url": "https://open.spotify.com/search/QUE+PRETENDES+J+Balvin",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 2,
+      "type": "chanson",
+      "id": "5ChkMS8OtdzJeqyybCc9R5",
+      "nom": "Billie Jean",
+      "artiste": "Michael Jackson",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.551,
+      "details_scores": {
+        "similarite_semantique": 0.452,
+        "mood_match": 0.5,
+        "preferences_likert": 0.75,
+        "audio_features": 0.75,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.654,
+        "danceability": 0.92,
+        "valence": 0.847,
+        "acousticness": 0.0236,
+        "tempo": 117.046,
+        "loudness": -3.051,
+        "speechiness": 0.0401,
+        "instrumentalness": 0.0158,
+        "liveness": 0.0359
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Billie+Jean+Michael+Jackson",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 3,
+      "type": "chanson",
+      "id": "59s0s39NFWScuHDbHytI14",
+      "nom": "Indeciso",
+      "artiste": "Reik",
+      "genre": "pop",
+      "description": "",
+      "score_global": 0.543,
+      "details_scores": {
+        "similarite_semantique": 0.393,
+        "mood_match": 0.5,
+        "preferences_likert": 0.822,
+        "audio_features": 0.822,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.748,
+        "danceability": 0.738,
+        "valence": 0.896,
+        "acousticness": 0.182,
+        "tempo": 94.949,
+        "loudness": -4.902,
+        "speechiness": 0.0453,
+        "instrumentalness": 0.0,
+        "liveness": 0.11
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Indeciso+Reik",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 4,
+      "type": "chanson",
+      "id": "37zdqI4r1gswIzczSBkRon",
+      "nom": "Aventura",
+      "artiste": "Lunay",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.535,
+      "details_scores": {
+        "similarite_semantique": 0.39,
+        "mood_match": 0.5,
+        "preferences_likert": 0.801,
+        "audio_features": 0.801,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.726,
+        "danceability": 0.729,
+        "valence": 0.876,
+        "acousticness": 0.223,
+        "tempo": 92.025,
+        "loudness": -3.208,
+        "speechiness": 0.0422,
+        "instrumentalness": 0.0,
+        "liveness": 0.101
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Aventura+Lunay",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 5,
+      "type": "chanson",
+      "id": "4IO8X9W69dIQe0EC5ALXhq",
+      "nom": "Immortal",
+      "artiste": "21 Savage",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.534,
+      "details_scores": {
+        "similarite_semantique": 0.408,
+        "mood_match": 0.5,
+        "preferences_likert": 0.766,
+        "audio_features": 0.766,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.87,
+        "danceability": 0.741,
+        "valence": 0.663,
+        "acousticness": 0.00813,
+        "tempo": 184.194,
+        "loudness": -3.494,
+        "speechiness": 0.503,
+        "instrumentalness": 0.0,
+        "liveness": 0.114
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Immortal+21+Savage",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 6,
+      "type": "chanson",
+      "id": "6RyaV7owmVU6fzEPE17sF1",
+      "nom": "Que Tire Pa Lante",
+      "artiste": "Daddy Yankee",
+      "genre": "pop",
+      "description": "",
+      "score_global": 0.532,
+      "details_scores": {
+        "similarite_semantique": 0.382,
+        "mood_match": 0.5,
+        "preferences_likert": 0.804,
+        "audio_features": 0.804,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.901,
+        "danceability": 0.658,
+        "valence": 0.708,
+        "acousticness": 0.0478,
+        "tempo": 93.979,
+        "loudness": -2.814,
+        "speechiness": 0.0357,
+        "instrumentalness": 0.0,
+        "liveness": 0.12
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Que+Tire+Pa+Lante+Daddy+Yankee",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 7,
+      "type": "chanson",
+      "id": "7N3PAbqfTjSEU1edb2tY8j",
+      "nom": "Jump - 2015 Remaster",
+      "artiste": "Van Halen",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.53,
+      "details_scores": {
+        "similarite_semantique": 0.37,
+        "mood_match": 0.5,
+        "preferences_likert": 0.816,
+        "audio_features": 0.816,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.835,
+        "danceability": 0.572,
+        "valence": 0.796,
+        "acousticness": 0.171,
+        "tempo": 129.994,
+        "loudness": -6.219,
+        "speechiness": 0.0317,
+        "instrumentalness": 0.000376,
+        "liveness": 0.0702
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Jump+-+2015+Remaster+Van+Halen",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 8,
+      "type": "chanson",
+      "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+      "nom": "Take on Me",
+      "artiste": "a-ha",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.524,
+      "details_scores": {
+        "similarite_semantique": 0.314,
+        "mood_match": 0.5,
+        "preferences_likert": 0.889,
+        "audio_features": 0.889,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.902,
+        "danceability": 0.573,
+        "valence": 0.876,
+        "acousticness": 0.018,
+        "tempo": 84.412,
+        "loudness": -7.638,
+        "speechiness": 0.054,
+        "instrumentalness": 0.00125,
+        "liveness": 0.0928
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Take+on+Me+a-ha",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 9,
+      "type": "chanson",
+      "id": "6L89mwZXSOwYl76YXfX13s",
+      "nom": "Basket Case",
+      "artiste": "Green Day",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.522,
+      "details_scores": {
+        "similarite_semantique": 0.326,
+        "mood_match": 0.5,
+        "preferences_likert": 0.862,
+        "audio_features": 0.862,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.943,
+        "danceability": 0.442,
+        "valence": 0.781,
+        "acousticness": 0.00293,
+        "tempo": 85.064,
+        "loudness": -3.205,
+        "speechiness": 0.0602,
+        "instrumentalness": 8.71e-06,
+        "liveness": 0.091
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Basket+Case+Green+Day",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 10,
+      "type": "chanson",
+      "id": "2tnVG71enUj33Ic2nFN6kZ",
+      "nom": "Ride It",
+      "artiste": "Regard",
+      "genre": "pop",
+      "description": "",
+      "score_global": 0.52,
+      "details_scores": {
+        "similarite_semantique": 0.35,
+        "mood_match": 0.5,
+        "preferences_likert": 0.818,
+        "audio_features": 0.818,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.751,
+        "danceability": 0.88,
+        "valence": 0.884,
+        "acousticness": 0.177,
+        "tempo": 117.948,
+        "loudness": -4.258,
+        "speechiness": 0.0874,
+        "instrumentalness": 6.43e-05,
+        "liveness": 0.106
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Ride+It+Regard",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    }
+  ],
+  "statistiques": {
+    "score_moyen": 0.41648778279621745,
+    "score_max": 0.5726950706243515,
+    "score_min": 0.28367113322019577,
+    "nombre_elements_evalues": 641
+  },
+  "genres_preferes": [],
+  "niveau_ouverture": 1,
+  "rapport_genai": {
+    "synthese": "**Synthèse Exécutive : Recommandations Musicales \"Sport\"**\n\nL'analyse cible une ambiance dynamique et entraînante, privilégiant l'énergie rythmique pour l'activité physique, au-delà de l'artiste mentionné. Les recommandations s'orientent vers la pop, genre le mieux noté, avec un mood \"énergique\" et une ambiance \"Sport\".\n\nDes titres comme \"QUE PRETENDES\" (J Balvin) et \"Billie Jean\" (Michael Jackson) sont privilégiés pour leurs rythmes captivants et mélodies entraînantes, idéales pour la motivation. L'univers musical proposé est moderne, optimiste et accessible, parfait pour une playlist stimulante malgré la diversité des genres.",
+    "plan_progression": "Votre goût pour Lil Wayne et le sport révèle une quête d'énergie ! Vos tops sont bons, mais optimisons pour vos sessions.\n\n1.  **Hip-Hop Énergique:** Approfondissez Lil Wayne ou explorez Travis Scott. Leurs beats puissants sont parfaits pour le sport et votre motivation.\n2.  **\"Énergie Intense\" (Playlist):** Malgré son score, cette playlist correspond *parfaitement* à votre contexte \"sport\". C'est une découverte prioritaire pour vous dynamiser !\n3.  **Fusions Rythmiques:** Reliez J Balvin au Reggaeton/Trap percutant. Essayez le rap UK pour une nouvelle dimension d'énergie et de groove.\n\nCe chemin vous offrira des expériences musicales stimulantes et parfaitement adaptées à votre rythme !"
+  }
+}

@@ -19,11 +19,17 @@ class GeminiService:
         """
         self.api_key = api_key or GEMINI_API_KEY
         
-        if not self.api_key or self.api_key == "your_gemini_api_key_here":
+        if not self.api_key or self.api_key == "your_gemini_api_key_here" or self.api_key == "":
+            print("[GeminiService] ⚠️ Pas de clé API Gemini configurée")
             self.model = None
         else:
-            genai.configure(api_key=self.api_key)
-            self.model = genai.GenerativeModel('gemini-2.5-flash')
+            try:
+                genai.configure(api_key=self.api_key)
+                self.model = genai.GenerativeModel('gemini-2.5-flash')
+                print(f"[GeminiService] ✅ Initialisé avec succès (clé: {self.api_key[:10]}...)")
+            except Exception as e:
+                print(f"[GeminiService] ❌ Erreur d'initialisation: {e}")
+                self.model = None
     
     def _verifier_disponibilite(self):
         """Vérifie si le service est disponible"""
@@ -56,6 +62,59 @@ class GeminiService:
         else:
             return element.get('id', 'Inconnu')
 
+    def ameliorer_requete_utilisateur(self, texte: str, seuil_mots: int = 10) -> str:
+        """
+        Améliore les requêtes utilisateur trop courtes pour la première question
+        
+        Args:
+            texte: Texte d'entrée utilisateur
+            seuil_mots: Nombre minimum de mots requis (défaut: 10)
+            
+        Returns:
+            Texte amélioré ou texte original si assez long
+        """
+        # Vérifier si amélioration nécessaire
+        mots = texte.strip().split()
+        if len(mots) >= seuil_mots:
+            return texte  # Pas besoin d'amélioration
+        
+        self._verifier_disponibilite()
+        
+        prompt = f"""Tu es un expert expert. Un utilisateur a décrit ses préférences musicales de manière très brève ({len(mots)} mots seulement).
+
+Texte original: "{texte}"
+
+Ta tâche: Paraphrase ce qu'a dit l'utilisateur, améliorer et enrichir cette description courte pour qu'elle soit plus complète. Parle à la première personne et reformule ce que te dit l'utilisateur en ajoutant du contexte musical pertinent. 
+
+Instructions:
+- CONSERVE l'intention originale et les mots-clés de l'utilisateur
+- AJOUTE du contexte musical pertinent basé sur ce qui est mentionné
+- INFÈRE les caractéristiques audio probables (tempo, énergie, ambiance, mood)
+- SUGGÈRE des genres musicaux cohérents si non mentionnés
+- AJOUTE des termes descriptifs (énergique, calme, joyeux, mélancolique, etc.)
+- Formule en phrases complètes et naturelles
+- GARDE un ton conversationnel comme si l'utilisateur avait écrit plus
+- LIMITE STRICTE: Maximum 100 mots
+
+Texte amélioré:"""
+
+        try:
+            print(f"[Gemini] Envoi requête à l'API Gemini...")
+            response = self.model.generate_content(prompt)
+            texte_ameliore = response.text.strip()
+            mots_avant = len(texte.split())
+            mots_apres = len(texte_ameliore.split())
+            print(f"[Gemini] ✅ Amélioration réussie: {mots_avant} mots → {mots_apres} mots")
+            print(f"[Gemini] Original: '{texte}'")
+            print(f"[Gemini] Amélioré: '{texte_ameliore}'")
+            return texte_ameliore
+        
+        except Exception as e:
+            print(f"[Gemini] ❌ Erreur lors de l'amélioration: {e}")
+            import traceback
+            traceback.print_exc()
+            return texte  # Retourner le texte original en cas d'erreur
+    
     def enrichir_texte_court(self, texte: str) -> str:
         """
         EF4.1: Enrichit les phrases courtes avec du contexte (usage conditionnel)

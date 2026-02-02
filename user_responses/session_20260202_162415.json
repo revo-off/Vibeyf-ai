@@ -1,0 +1,337 @@
+{
+  "user_id": "20260202_162415",
+  "timestamp": "2026-02-02T16:24:29.038058",
+  "reponses_utilisateur": {
+    "likert": {
+      "q1_energie": 5,
+      "q2_humeur": 5,
+      "q3_ouverture": 1
+    },
+    "ouvertes": {
+      "qo1_preferences": "Tu m'as parlé de \"sport\", et je comprends que tu cherches une sélection musicale idéale pour tes activités physiques ! Je te propose des morceaux **énergiques** et **motivants**, parfaits pour te **booster**.\n\nJe crois que tu apprécierais un **tempo rapide** et un **rythme entraînant**, avec une ambiance **puissante** et **déterminée**. Nous pourrions explorer des genres comme l'**EDM**, le **Hip-Hop dynamique**, le **Rock alternatif** ou même des bandes sonores épiques et **inspirantes**. L'objectif est de trouver des sons **intenses** qui t'aident à dépasser tes limites et à maintenir ta concentration.",
+      "qo2_contexte": "sport",
+      "qo3_artistes": [
+        "Lil Wayne"
+      ]
+    }
+  },
+  "recommandations": [
+    {
+      "rang": 1,
+      "type": "chanson",
+      "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+      "nom": "Take on Me",
+      "artiste": "a-ha",
+      "genre": "rock",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.508,
+        "mood_match": 0.5,
+        "preferences_likert": 0.889,
+        "audio_features": 0.889,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.902,
+        "danceability": 0.573,
+        "valence": 0.876,
+        "acousticness": 0.018,
+        "tempo": 84.412,
+        "loudness": -7.638,
+        "speechiness": 0.054,
+        "instrumentalness": 0.00125,
+        "liveness": 0.0928
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Take+on+Me+a-ha",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 2,
+      "type": "chanson",
+      "id": "37zdqI4r1gswIzczSBkRon",
+      "nom": "Aventura",
+      "artiste": "Lunay",
+      "genre": "rap",
+      "description": "",
+      "score_global": 1.0,
+      "details_scores": {
+        "similarite_semantique": 0.43,
+        "mood_match": 0.5,
+        "preferences_likert": 0.801,
+        "audio_features": 0.801,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.726,
+        "danceability": 0.729,
+        "valence": 0.876,
+        "acousticness": 0.223,
+        "tempo": 92.025,
+        "loudness": -3.208,
+        "speechiness": 0.0422,
+        "instrumentalness": 0.0,
+        "liveness": 0.101
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Aventura+Lunay",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 3,
+      "type": "chanson",
+      "id": "3cfOd4CMv2snFaKAnMdnvK",
+      "nom": "All Star",
+      "artiste": "Smash Mouth",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.977,
+      "details_scores": {
+        "similarite_semantique": 0.393,
+        "mood_match": 0.5,
+        "preferences_likert": 0.822,
+        "audio_features": 0.822,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.867,
+        "danceability": 0.731,
+        "valence": 0.776,
+        "acousticness": 0.0395,
+        "tempo": 104.019,
+        "loudness": -5.881,
+        "speechiness": 0.032,
+        "instrumentalness": 0.0,
+        "liveness": 0.0861
+      },
+      "spotify_search_url": "https://open.spotify.com/search/All+Star+Smash+Mouth",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 4,
+      "type": "chanson",
+      "id": "3CRDbSIZ4r5MsZ0YwxuEkn",
+      "nom": "Stressed Out",
+      "artiste": "Twenty One Pilots",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.972,
+      "details_scores": {
+        "similarite_semantique": 0.495,
+        "mood_match": 0.5,
+        "preferences_likert": 0.643,
+        "audio_features": 0.643,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.637,
+        "danceability": 0.734,
+        "valence": 0.648,
+        "acousticness": 0.0462,
+        "tempo": 169.977,
+        "loudness": -5.677,
+        "speechiness": 0.141,
+        "instrumentalness": 2.29e-05,
+        "liveness": 0.0602
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Stressed+Out+Twenty+One+Pilots",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 5,
+      "type": "chanson",
+      "id": "6L89mwZXSOwYl76YXfX13s",
+      "nom": "Basket Case",
+      "artiste": "Green Day",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.971,
+      "details_scores": {
+        "similarite_semantique": 0.361,
+        "mood_match": 0.5,
+        "preferences_likert": 0.862,
+        "audio_features": 0.862,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.943,
+        "danceability": 0.442,
+        "valence": 0.781,
+        "acousticness": 0.00293,
+        "tempo": 85.064,
+        "loudness": -3.205,
+        "speechiness": 0.0602,
+        "instrumentalness": 8.71e-06,
+        "liveness": 0.091
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Basket+Case+Green+Day",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 6,
+      "type": "chanson",
+      "id": "2tnVG71enUj33Ic2nFN6kZ",
+      "nom": "Ride It",
+      "artiste": "Regard",
+      "genre": "edm",
+      "description": "",
+      "score_global": 0.97,
+      "details_scores": {
+        "similarite_semantique": 0.387,
+        "mood_match": 0.5,
+        "preferences_likert": 0.818,
+        "audio_features": 0.818,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.751,
+        "danceability": 0.88,
+        "valence": 0.884,
+        "acousticness": 0.177,
+        "tempo": 117.948,
+        "loudness": -4.258,
+        "speechiness": 0.0874,
+        "instrumentalness": 6.43e-05,
+        "liveness": 0.106
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Ride+It+Regard",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 7,
+      "type": "chanson",
+      "id": "6mAN61JH0dzyZpWslS11jy",
+      "nom": "Fantasias",
+      "artiste": "Rauw Alejandro",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.968,
+      "details_scores": {
+        "similarite_semantique": 0.428,
+        "mood_match": 0.5,
+        "preferences_likert": 0.746,
+        "audio_features": 0.746,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.703,
+        "danceability": 0.879,
+        "valence": 0.788,
+        "acousticness": 0.143,
+        "tempo": 94.004,
+        "loudness": -4.219,
+        "speechiness": 0.0701,
+        "instrumentalness": 0.0,
+        "liveness": 0.0569
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Fantasias+Rauw+Alejandro",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 8,
+      "type": "chanson",
+      "id": "6K4t31amVTZDgR3sKmwUJJ",
+      "nom": "The Less I Know The Better",
+      "artiste": "Tame Impala",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.967,
+      "details_scores": {
+        "similarite_semantique": 0.417,
+        "mood_match": 0.5,
+        "preferences_likert": 0.762,
+        "audio_features": 0.762,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.74,
+        "danceability": 0.64,
+        "valence": 0.785,
+        "acousticness": 0.0115,
+        "tempo": 116.879,
+        "loudness": -4.083,
+        "speechiness": 0.0284,
+        "instrumentalness": 0.00678,
+        "liveness": 0.167
+      },
+      "spotify_search_url": "https://open.spotify.com/search/The+Less+I+Know+The+Better+Tame+Impala",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 9,
+      "type": "chanson",
+      "id": "7qiZfU4dY1lWllzX7mPBI3",
+      "nom": "Shape of You",
+      "artiste": "Ed Sheeran",
+      "genre": "edm",
+      "description": "",
+      "score_global": 0.967,
+      "details_scores": {
+        "similarite_semantique": 0.399,
+        "mood_match": 0.5,
+        "preferences_likert": 0.792,
+        "audio_features": 0.792,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.652,
+        "danceability": 0.825,
+        "valence": 0.931,
+        "acousticness": 0.581,
+        "tempo": 95.977,
+        "loudness": -3.183,
+        "speechiness": 0.0802,
+        "instrumentalness": 0.0,
+        "liveness": 0.0931
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Shape+of+You+Ed+Sheeran",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 10,
+      "type": "chanson",
+      "id": "3tv697PZNnaQN0Mn2zGhS5",
+      "nom": "A Gente Fez Amor - Ao Vivo",
+      "artiste": "Gusttavo Lima",
+      "genre": "edm",
+      "description": "",
+      "score_global": 0.965,
+      "details_scores": {
+        "similarite_semantique": 0.343,
+        "mood_match": 0.5,
+        "preferences_likert": 0.882,
+        "audio_features": 0.882,
+        "genre_boost": 0.8
+      },
+      "caracteristiques": {
+        "energy": 0.937,
+        "danceability": 0.793,
+        "valence": 0.827,
+        "acousticness": 0.366,
+        "tempo": 134.012,
+        "loudness": -2.44,
+        "speechiness": 0.0336,
+        "instrumentalness": 4.27e-06,
+        "liveness": 0.962
+      },
+      "spotify_search_url": "https://open.spotify.com/search/A+Gente+Fez+Amor+-+Ao+Vivo+Gusttavo+Lima",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    }
+  ],
+  "statistiques": {
+    "score_moyen": 0.5865408176643024,
+    "score_max": 1.0,
+    "score_min": 0.2701597138166428,
+    "nombre_elements_evalues": 641
+  },
+  "genres_preferes": [
+    "hip-hop",
+    "edm",
+    "rap",
+    "rock"
+  ],
+  "niveau_ouverture": 1,
+  "rapport_genai": {
+    "synthese": "**Synthèse Exécutive : Recommandations Musicales pour le Sport**\n\nNotre analyse a identifié des titres à fort potentiel pour vos activités physiques, priorisant l'énergie et la motivation. Les top 3, incluant \"Take on Me\" (a-ha), \"Aventura\" (Lunay) et \"All Star\" (Smash Mouth), affichent des scores globaux exceptionnels, soulignant leur capacité à stimuler efficacement votre performance.\n\nCes sélections, bien que diversifiées, partagent un tempo rapide et un rythme entraînant, cruciaux pour un \"mood\" énergique et déterminé. Elles proposent des ambiances puissantes et inspirantes, visant à maximiser votre concentration et vous aider à dépasser vos limites, en parfaite adéquation avec l'objectif sportif défini.",
+    "plan_progression": "Plan de progression non disponible (erreur API)."
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "user_id": "20260202_153900",
+  "timestamp": "2026-02-02T15:39:39.564827",
+  "reponses_utilisateur": {
+    "likert": {
+      "q1_energie": 4,
+      "q2_humeur": 5,
+      "q3_ouverture": 4
+    },
+    "ouvertes": {
+      "qo1_preferences": "sport",
+      "qo2_contexte": "sport",
+      "qo3_artistes": [
+        "Lil Wayne"
+      ]
+    }
+  },
+  "recommandations": [
+    {
+      "rang": 1,
+      "type": "chanson",
+      "id": "25ZAibhr3bdlMCLmubZDVt",
+      "nom": "QUE PRETENDES",
+      "artiste": "J Balvin",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.598,
+      "details_scores": {
+        "similarite_semantique": 0.426,
+        "mood_match": 0.5,
+        "preferences_likert": 0.949,
+        "audio_features": 0.949,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.791,
+        "danceability": 0.639,
+        "valence": 0.939,
+        "acousticness": 0.0275,
+        "tempo": 92.603,
+        "loudness": -4.443,
+        "speechiness": 0.253,
+        "instrumentalness": 0.0,
+        "liveness": 0.362
+      },
+      "spotify_search_url": "https://open.spotify.com/search/QUE+PRETENDES+J+Balvin",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 2,
+      "type": "chanson",
+      "id": "5ChkMS8OtdzJeqyybCc9R5",
+      "nom": "Billie Jean",
+      "artiste": "Michael Jackson",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.589,
+      "details_scores": {
+        "similarite_semantique": 0.452,
+        "mood_match": 0.5,
+        "preferences_likert": 0.876,
+        "audio_features": 0.876,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.654,
+        "danceability": 0.92,
+        "valence": 0.847,
+        "acousticness": 0.0236,
+        "tempo": 117.046,
+        "loudness": -3.051,
+        "speechiness": 0.0401,
+        "instrumentalness": 0.0158,
+        "liveness": 0.0359
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Billie+Jean+Michael+Jackson",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 3,
+      "type": "chanson",
+      "id": "59s0s39NFWScuHDbHytI14",
+      "nom": "Indeciso",
+      "artiste": "Reik",
+      "genre": "pop",
+      "description": "",
+      "score_global": 0.581,
+      "details_scores": {
+        "similarite_semantique": 0.393,
+        "mood_match": 0.5,
+        "preferences_likert": 0.947,
+        "audio_features": 0.947,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.748,
+        "danceability": 0.738,
+        "valence": 0.896,
+        "acousticness": 0.182,
+        "tempo": 94.949,
+        "loudness": -4.902,
+        "speechiness": 0.0453,
+        "instrumentalness": 0.0,
+        "liveness": 0.11
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Indeciso+Reik",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 4,
+      "type": "chanson",
+      "id": "37zdqI4r1gswIzczSBkRon",
+      "nom": "Aventura",
+      "artiste": "Lunay",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.573,
+      "details_scores": {
+        "similarite_semantique": 0.39,
+        "mood_match": 0.5,
+        "preferences_likert": 0.926,
+        "audio_features": 0.926,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.726,
+        "danceability": 0.729,
+        "valence": 0.876,
+        "acousticness": 0.223,
+        "tempo": 92.025,
+        "loudness": -3.208,
+        "speechiness": 0.0422,
+        "instrumentalness": 0.0,
+        "liveness": 0.101
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Aventura+Lunay",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 5,
+      "type": "chanson",
+      "id": "2tnVG71enUj33Ic2nFN6kZ",
+      "nom": "Ride It",
+      "artiste": "Regard",
+      "genre": "pop",
+      "description": "",
+      "score_global": 0.557,
+      "details_scores": {
+        "similarite_semantique": 0.35,
+        "mood_match": 0.5,
+        "preferences_likert": 0.942,
+        "audio_features": 0.942,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.751,
+        "danceability": 0.88,
+        "valence": 0.884,
+        "acousticness": 0.177,
+        "tempo": 117.948,
+        "loudness": -4.258,
+        "speechiness": 0.0874,
+        "instrumentalness": 6.43e-05,
+        "liveness": 0.106
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Ride+It+Regard",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 6,
+      "type": "chanson",
+      "id": "3bH4HzoZZFq8UpZmI2AMgV",
+      "nom": "New Light",
+      "artiste": "John Mayer",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.557,
+      "details_scores": {
+        "similarite_semantique": 0.376,
+        "mood_match": 0.5,
+        "preferences_likert": 0.896,
+        "audio_features": 0.896,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.689,
+        "danceability": 0.828,
+        "valence": 0.853,
+        "acousticness": 0.325,
+        "tempo": 123.931,
+        "loudness": -7.878,
+        "speechiness": 0.0326,
+        "instrumentalness": 0.0384,
+        "liveness": 0.0808
+      },
+      "spotify_search_url": "https://open.spotify.com/search/New+Light+John+Mayer",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 7,
+      "type": "chanson",
+      "id": "7qiZfU4dY1lWllzX7mPBI3",
+      "nom": "Shape of You",
+      "artiste": "Ed Sheeran",
+      "genre": "edm",
+      "description": "",
+      "score_global": 0.554,
+      "details_scores": {
+        "similarite_semantique": 0.357,
+        "mood_match": 0.5,
+        "preferences_likert": 0.917,
+        "audio_features": 0.917,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.652,
+        "danceability": 0.825,
+        "valence": 0.931,
+        "acousticness": 0.581,
+        "tempo": 95.977,
+        "loudness": -3.183,
+        "speechiness": 0.0802,
+        "instrumentalness": 0.0,
+        "liveness": 0.0931
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Shape+of+You+Ed+Sheeran",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 8,
+      "type": "chanson",
+      "id": "6klLvorLoo1sxvZcjJIY8I",
+      "nom": "Make No Sense",
+      "artiste": "YoungBoy Never Broke Again",
+      "genre": "rap",
+      "description": "",
+      "score_global": 0.548,
+      "details_scores": {
+        "similarite_semantique": 0.313,
+        "mood_match": 0.5,
+        "preferences_likert": 0.972,
+        "audio_features": 0.972,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.733,
+        "danceability": 0.876,
+        "valence": 0.962,
+        "acousticness": 0.0208,
+        "tempo": 154.904,
+        "loudness": -4.478,
+        "speechiness": 0.333,
+        "instrumentalness": 0.0,
+        "liveness": 0.0999
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Make+No+Sense+YoungBoy+Never+Broke+Again",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 9,
+      "type": "chanson",
+      "id": "2rc7BkzO8qepMFAxHtOrXc",
+      "nom": "Blanco",
+      "artiste": "J Balvin",
+      "genre": "pop",
+      "description": "",
+      "score_global": 0.546,
+      "details_scores": {
+        "similarite_semantique": 0.427,
+        "mood_match": 0.5,
+        "preferences_likert": 0.774,
+        "audio_features": 0.774,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.706,
+        "danceability": 0.87,
+        "valence": 0.593,
+        "acousticness": 0.0253,
+        "tempo": 100.013,
+        "loudness": -5.395,
+        "speechiness": 0.126,
+        "instrumentalness": 0.0063,
+        "liveness": 0.0872
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Blanco+J+Balvin",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    },
+    {
+      "rang": 10,
+      "type": "chanson",
+      "id": "3yrSvpt2l1xhsV9Em88Pul",
+      "nom": "Brown Eyed Girl",
+      "artiste": "Van Morrison",
+      "genre": "rock",
+      "description": "",
+      "score_global": 0.545,
+      "details_scores": {
+        "similarite_semantique": 0.368,
+        "mood_match": 0.5,
+        "preferences_likert": 0.87,
+        "audio_features": 0.87,
+        "genre_boost": 0.0
+      },
+      "caracteristiques": {
+        "energy": 0.583,
+        "danceability": 0.491,
+        "valence": 0.907,
+        "acousticness": 0.182,
+        "tempo": 150.572,
+        "loudness": -10.964,
+        "speechiness": 0.0376,
+        "instrumentalness": 0.0,
+        "liveness": 0.407
+      },
+      "spotify_search_url": "https://open.spotify.com/search/Brown+Eyed+Girl+Van+Morrison",
+      "album_cover_url": "https://via.placeholder.com/300x300/1DB954/FFFFFF?text=♪"
+    }
+  ],
+  "statistiques": {
+    "score_moyen": 0.44660175662341484,
+    "score_max": 0.5978950706243514,
+    "score_min": 0.28367113322019577,
+    "nombre_elements_evalues": 641
+  },
+  "genres_preferes": [],
+  "niveau_ouverture": 4,
+  "rapport_genai": {
+    "synthese": "**Synthèse Exécutive : Recommandations Musicales \"Sport\"**\n\nCette analyse identifie des titres énergiques et rythmés, parfaitement adaptés à l'ambiance \"sport\" et au mood \"énergique\" recherchés. Des morceaux comme \"QUE PRETENDES\" (J Balvin) et \"Billie Jean\" (Michael Jackson) sont privilégiés pour leur dynamisme entraînant et leur large popularité, s'inscrivant dans une playlist \"Hits des années 2010\" de genre \"pop\".\n\nCes choix, bien que distincts du style de Lil Wayne, partagent une vitalité contagieuse et une accessibilité qui animent toute activité physique. L'univers recommandé est celui d'une pop stimulante et fédératrice, idéale pour une motivation soutenue et un engagement universel.",
+    "plan_progression": "Votre profil mêle l'énergie \"sport\" (Lil Wayne) et rythmes entraînants. Élargissons!\n\n1.  **Réactivez l'énergie:** \"Énergie Intense/Medium\" (faibles scores) sont clés pour votre \"sport\". Explorez leurs dynamiques.\n2.  **Osez le contraste:** \"Lose You To Love Me\" (Selena Gomez) offre une pop introspective, enrichissant vos émotions.\n3.  **Diversifiez le Hip-Hop:** Découvrez des artistes moins connus, au dynamisme de Lil Wayne, pour renouveler vos playlists.\n\nCe plan optimisera votre écoute et ouvrira vos horizons."
+  }
+}
